@@ -1,7 +1,7 @@
 {
     "name": "Ollie One",
     "description": "Ollie and his snoot.",
-    "image": "https://github.com/mitchellnel/ollie-and-mayhem-nft/blob/master/img/ollie1.jpeg",
+    "image": "https://raw.githubusercontent.com/mitchellnel/ollie-and-mayhem-nft/master/img/ollie1.jpeg",
     "attributes": [
         {
             "trait_type": "boop",
