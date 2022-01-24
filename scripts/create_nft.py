@@ -1,5 +1,5 @@
-from brownie import account, config, network
 from brownie import OllieAndMayhemNFT
+
 from scripts.helpful_scripts import fund_with_link, get_account
 from web3 import Web3
 from time import sleep
