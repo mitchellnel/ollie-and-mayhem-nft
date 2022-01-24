@@ -109,14 +109,24 @@ contract OllieAndMayhemNFT is ERC721, VRFConsumerBase, Ownable {
         _safeMint(owner, newTokenID);
         tokenCounter += 1;
 
-        // TODO: Add URI setting code
+        // MARK: Add URI setting code
+        // from my research, doesn't seem to be an easy way to add IPFS URIs in contract
+        // it's possible to use some other hosting platform (like GitHub, Google etc.)
+        //  to pass a predictable prefix to a URI -- but platforms like this are centralised
+        // I'm considering it more decentralised if I, as the contract owner, upload the
+        //  URIs myself after minting using the files I've posted to IPFS
+        // this is definitely an interesting point of contention regarding URIs
     }
 
-    function setTokenURI(uint256 tokenID, string memory _tokenURI) internal {
+    function setTokenURI(uint256 tokenID, string memory _tokenURI)
+        internal
+        onlyOwner
+    {
         require(
             _isApprovedOrOwner(_msgSender(), tokenID),
             "ERC721: caller is not owner nor approved."
         );
+        _setTokenURI(tokenID, _tokenURI);
     }
 
     // function killNFTCollection() public onlyOwner {
