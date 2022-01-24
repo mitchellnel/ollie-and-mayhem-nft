@@ -9,8 +9,16 @@ OPENSEA_URL = "https://testnets.opensea.io/assets/{}/{}"
 
 CONTRACT_TO_MOCK = {"vrf_coordinator": VRFCoordinatorMock, "link_token": LinkToken}
 
-PET_MAPPING = {0: "OLLIE", 1: "MAYEHM"}
-COLOUR_MAPPING = {0: "NORMAL", 1: "INV"}
+PET_MAPPING = {0: "OLLIE", 1: "MAYHEM"}
+COLOUR_MAPPING = {0: "NORMAL", 1: "INVERTED"}
+
+
+def get_pet(pet_number):
+    return PET_MAPPING[pet_number]
+
+
+def get_colour(colour_number):
+    return COLOUR_MAPPING[colour_number]
 
 
 def get_account(index=None, id=None):

@@ -1,0 +1,11 @@
+{
+    "name": "Mayhem 8",
+    "description": "Mayhem being fed from a finger.",
+    "image": "https://ipfs.io/ipfs/QmdtiV1A26mSrNmPzbSKGpcPiHtLaTQmavpr5YXpwdwHck?filename=mayhem8_inverted.jpg",
+    "attributes": [
+        {
+            "trait_type": "Inverted Colour",
+            "value": 3
+        }
+    ]
+}
