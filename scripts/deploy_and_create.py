@@ -1,8 +1,7 @@
 from brownie import config, network
 from brownie import OllieAndMayhemNFT
+from scripts.create_nft import create_nft
 from scripts.helpful_scripts import (
-    OPENSEA_URL,
-    fund_with_link,
     get_account,
     get_contract,
 )
@@ -22,14 +21,7 @@ def deploy_and_create():
     )
     print(f"... Done! Contract deployed to {nft.address}\n")
 
-    fund_with_link(nft.address)
-
-    print("Creating an OllieAndMayhem NFT ...")
-    create_txn = nft.createNFT({"from": account})
-    create_txn.wait(1)
-    print(f"... Done!\n")
-
-    return nft, create_txn
+    create_nft()
 
 
 def main():

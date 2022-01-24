@@ -15,6 +15,7 @@ def create_metadata():
     print(f"You have created {number_of_NFTs} NFTs.")
 
     for token_id in range(0, number_of_NFTs):
+        # extract all the traits
         nft_traits = nft.tokenIDtoTraits(token_id)  # returns a tuple
 
         pet = get_pet(nft_traits[0])
@@ -25,6 +26,7 @@ def create_metadata():
             else ""
         )
 
+        # set file paths
         image_file_path = f"./img/{pet}{image_number}{colour}.jpg".lower()
         metadata_file_path = f"./metadata/{network.show_active()}/{token_id}-{pet}{image_number}{colour}.json".lower()
         nft_metadata = METADATA_TEMPLATE
@@ -32,6 +34,7 @@ def create_metadata():
         if Path(metadata_file_path).exists():
             print(f"{metadata_file_path} already exists! Delete it to overwrite!\n")
         else:
+            # fill in the metadata
             print(f"Creating metadata file: {metadata_file_path} ...")
             nft_metadata["name"] = f"{pet.capitalize()} {image_number}"
             nft_metadata["description"] = IMAGE_NUMBER_TO_DESCRIPTION[pet][image_number]
@@ -45,6 +48,7 @@ def create_metadata():
                 else []
             )
 
+            # write to .json and upload
             with open(metadata_file_path, "w") as file:
                 json.dump(nft_metadata, file)
 
