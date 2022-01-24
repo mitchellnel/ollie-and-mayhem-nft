@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.6;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
 
-contract OllieAndMayhemNFT is ERC721, VRFConsumerBase {
+contract OllieAndMayhemNFT is ERC721, VRFConsumerBase, Ownable {
     // tracking existing NFTs
     uint256 public tokenCounter;
     mapping(uint256 => NFTTraits) public tokenIDtoTraits;
@@ -22,15 +23,29 @@ contract OllieAndMayhemNFT is ERC721, VRFConsumerBase {
         Colour colour;
     }
 
+    // even chance to be either pet
     enum Pet {
         OLLIE,
         MAYHEM
     }
 
+    // 10% chance to be INVERTED
     enum Colour {
         NORMAL,
         INVERTED
     }
+    Colour[10] colours = [
+        Colour.NORMAL,
+        Colour.NORMAL,
+        Colour.NORMAL,
+        Colour.NORMAL,
+        Colour.NORMAL,
+        Colour.NORMAL,
+        Colour.NORMAL,
+        Colour.NORMAL,
+        Colour.NORMAL,
+        Colour.INVERTED
+    ];
 
     // translating trait combinations to their respective token URIs
 
@@ -71,8 +86,8 @@ contract OllieAndMayhemNFT is ERC721, VRFConsumerBase {
     {
         // get random traits
         Pet pet = Pet(randomNumber % 2);
-        uint256 imageNumber = randomNumber % 9; // 9 images for each pet
-        Colour colour = Colour(randomNumber % 2);
+        uint256 imageNumber = (randomNumber % 9) + 1; // 9 images for each pet - image numbers are 1-indexed
+        Colour colour = colours[randomNumber % 10]; // 10% chance of INVERTED
 
         NFTTraits memory traits;
         traits.pet = pet;
@@ -103,4 +118,8 @@ contract OllieAndMayhemNFT is ERC721, VRFConsumerBase {
             "ERC721: caller is not owner nor approved."
         );
     }
+
+    // function killNFTCollection() public onlyOwner {
+    //     selfdestruct(payable(msg.sender));
+    // }
 }
