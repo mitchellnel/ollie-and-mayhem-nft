@@ -119,7 +119,7 @@ contract OllieAndMayhemNFT is ERC721, VRFConsumerBase, Ownable {
     }
 
     function setTokenURI(uint256 tokenID, string memory _tokenURI)
-        internal
+        public
         onlyOwner
     {
         require(
