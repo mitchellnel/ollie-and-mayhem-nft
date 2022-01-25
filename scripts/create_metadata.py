@@ -78,7 +78,7 @@ def upload_to_ipfs(filepath):
         return uri
 
 
-def upload_to_pinata(filepath, already_posted_to_ipfs=True):
+def upload_to_pinata(filepath, already_posted_to_ipfs=False):
     """Uploads filepath to Pinata, who will pin it to a IPFS node, allowing us to
     access our URIs even when our local node is not running.
     """
