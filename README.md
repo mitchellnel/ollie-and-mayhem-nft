@@ -7,4 +7,7 @@ NFTs of Ollie and Mayhem -- only deployed on Rinkeby
 
 The entire collection is visible at https://testnets.opensea.io/collection/ollieandmayhem-v4
 
-I did not add a uniqueness guarantor to the smart contract.
+### To-do
+- [x] Implement basic NFT smart contract functionality
+- [ ] Add uniqueness
+- [ ] Create web application to allow users to mint easily
